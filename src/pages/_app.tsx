@@ -1,7 +1,16 @@
 import '../styles/global.scss';
 
-function MyApp({ Component, pageProps }: any) {
-  return <Component {...pageProps} />;
-}
+import { Header } from '../components/Header';
 
-export default MyApp;
+import styles from '../styles/app.module.scss';
+
+export default function MyApp({ Component, pageProps }: any) {
+  return (
+    <div className={styles.wrapper}>
+      <main>
+        <Header />
+        <Component {...pageProps} />
+      </main>
+    </div>
+  );
+}
