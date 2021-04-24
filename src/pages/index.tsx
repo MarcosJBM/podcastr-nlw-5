@@ -12,7 +12,7 @@ import { convertDurationToTimeString } from '../utils/convertDurationToTimeStrin
 
 import styles from './home.module.scss';
 
-export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
+export default function Home({ latestEpisodes, allEpisodes }: HomepageProps) {
   return (
     <div className={styles.homepage}>
       <section className={styles.latestEpisodes}>
@@ -118,7 +118,6 @@ export const getStaticProps: GetStaticProps = async () => {
       durationAsString: convertDurationToTimeString(
         Number(episode.file.duration)
       ),
-      description: episode.description,
       url: episode.file.url,
     };
   });

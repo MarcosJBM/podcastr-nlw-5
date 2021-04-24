@@ -1,4 +1,4 @@
-type Episode = {
+interface Episode {
   id: string;
   title: string;
   members: string;
@@ -7,14 +7,14 @@ type Episode = {
   description: string;
   file: File;
   durationAsString: string;
-};
+}
 
 interface File {
   url: string;
   duration: number;
 }
 
-type HomeProps = {
+type HomepageProps = {
   latestEpisodes: Episode[];
   allEpisodes: Episode[];
 };
