@@ -4,15 +4,18 @@ import { Header } from '../components/Header';
 import { Player } from '../components/Player';
 
 import styles from '../styles/app.module.scss';
+import { PlayerProvider } from '../contexts/PlayerContext';
 
 export default function MyApp({ Component, pageProps }: any) {
   return (
-    <div className={styles.wrapper}>
-      <main>
-        <Header />
-        <Component {...pageProps} />
-      </main>
-      <Player />
-    </div>
+    <PlayerProvider>
+      <div className={styles.wrapper}>
+        <main>
+          <Header />
+          <Component {...pageProps} />
+        </main>
+        <Player />
+      </div>
+    </PlayerProvider>
   );
 }
