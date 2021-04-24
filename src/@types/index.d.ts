@@ -14,13 +14,13 @@ interface File {
   duration: number;
 }
 
-type HomepageProps = {
+interface HomepageProps {
   latestEpisodes: Episode[];
   allEpisodes: Episode[];
-};
+}
 
 interface PlayerContextData {
   episodeList: Episode[];
   currentEpisodeIndex: number;
-  play: (episode: Episode) => void
+  play: (episode: Episode) => void;
 }

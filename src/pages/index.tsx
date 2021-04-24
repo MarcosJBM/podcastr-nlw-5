@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+
 import { GetStaticProps } from 'next';
 
 import Image from 'next/image';
@@ -6,13 +8,13 @@ import Link from 'next/link';
 import { format, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
+import { PlayerContext } from '../contexts/PlayerContext';
+
 import { api } from '../services/api';
 
 import { convertDurationToTimeString } from '../utils/convertDurationToTimeString';
 
 import styles from './home.module.scss';
-import { useContext } from 'react';
-import { PlayerContext } from '../contexts/PlayerContext';
 
 export default function Home({ latestEpisodes, allEpisodes }: HomepageProps) {
   const { play } = useContext(PlayerContext);
@@ -115,16 +117,19 @@ export const getStaticProps: GetStaticProps = async () => {
     return {
       id: episode.id,
       title: episode.title,
-      thumbnail: episode.thumbnail,
       members: episode.members,
       published_at: format(parseISO(episode.published_at), 'd MMM yy', {
         locale: ptBR,
       }),
-      duration: Number(episode.file.duration),
+      thumbnail: episode.thumbnail,
+      file: {
+        url: episode.file.url,
+        duration: Number(episode.file.duration),
+      },
+
       durationAsString: convertDurationToTimeString(
         Number(episode.file.duration)
       ),
-      url: episode.file.url,
     };
   });
 

@@ -84,15 +84,18 @@ export const getStaticProps: GetStaticProps = async context => {
   const episode = {
     id: data.id,
     title: data.title,
-    thumbnail: data.thumbnail,
     members: data.members,
     published_at: format(parseISO(data.published_at), 'd MMM yy', {
       locale: ptBR,
     }),
-    duration: Number(data.file.duration),
-    durationAsString: convertDurationToTimeString(Number(data.file.duration)),
+    thumbnail: data.thumbnail,
     description: data.description,
-    url: data.file.url,
+    file: {
+      url: data.file.url,
+      duration: Number(data.file.duration),
+    },
+
+    durationAsString: convertDurationToTimeString(Number(data.file.duration)),
   };
 
   return {
