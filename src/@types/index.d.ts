@@ -18,3 +18,9 @@ type HomepageProps = {
   latestEpisodes: Episode[];
   allEpisodes: Episode[];
 };
+
+interface PlayerContextData {
+  episodeList: Episode[];
+  currentEpisodeIndex: number;
+  play: (episode: Episode) => void
+}
