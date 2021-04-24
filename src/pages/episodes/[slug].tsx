@@ -1,5 +1,8 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 
+import Image from 'next/image';
+import Link from 'next/link';
+
 import { format, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
@@ -8,8 +11,6 @@ import { api } from '../../services/api';
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
 
 import styles from './episode.module.scss';
-import Image from 'next/image';
-import Link from 'next/link';
 
 interface Episodes {
   episode: Episode;
@@ -53,8 +54,24 @@ export default function Episode({ episode }: Episodes) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const { data } = await api.get<Episode[]>('episodes', {
+    params: {
+      _limit: 2,
+      _sort: 'published_at',
+      _order: 'desc',
+    },
+  });
+
+  const paths = data.map(episode => {
+    return {
+      params: {
+        slug: episode.id,
+      },
+    };
+  });
+
   return {
-    paths: [],
+    paths,
     fallback: 'blocking',
   };
 };

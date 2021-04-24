@@ -76,7 +76,9 @@ export default function Home({ latestEpisodes, allEpisodes }: HomepageProps) {
                     />
                   </td>
                   <td>
-                    <a href=''>{episode.title}</a>
+                    <Link href={`/episodes/${episode.id}`} passHref>
+                      <a>{episode.title}</a>
+                    </Link>
                   </td>
                   <td>{episode.members}</td>
                   <td style={{ width: 100 }}>{episode.published_at}</td>
