@@ -6,14 +6,15 @@ type Episode = {
   thumbnail: string;
   description: string;
   file: File;
+  durationAsString: string;
 };
 
 interface File {
   url: string;
   duration: number;
-  durationAsString: string;
 }
 
 type HomeProps = {
-  episodes: Episode[];
+  latestEpisodes: Episode[];
+  allEpisodes: Episode[];
 };
