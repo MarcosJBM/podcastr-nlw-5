@@ -11,6 +11,7 @@ type Episode = {
 interface File {
   url: string;
   duration: number;
+  durationAsString: string;
 }
 
 type HomeProps = {

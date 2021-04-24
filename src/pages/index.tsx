@@ -4,6 +4,8 @@ import { ptBR } from 'date-fns/locale';
 
 import { api } from '../services/api';
 
+import { convertDurationToTimeString } from '../utils/convertDurationToTimeString';
+
 export default function Home(props: HomeProps) {
   return (
     <div>
@@ -13,7 +15,7 @@ export default function Home(props: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data: Episode[] = await api.get('episodes', {
+  const { data } = await api.get<Episode[]>('episodes', {
     params: {
       _limit: 12,
       _sort: 'published_at',
@@ -31,6 +33,9 @@ export const getStaticProps: GetStaticProps = async () => {
         locale: ptBR,
       }),
       duration: Number(episode.file.duration),
+      durationAsString: convertDurationToTimeString(
+        Number(episode.file.duration)
+      ),
       description: episode.description,
       url: episode.file.url,
     };
@@ -38,7 +43,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      episodes: episodes,
+      episodes,
     },
     revalidate: 60 * 60 * 8,
   };
