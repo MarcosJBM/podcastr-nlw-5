@@ -25,4 +25,5 @@ interface PlayerContextData {
   isPlaying: boolean;
   play: (episode: Episode) => void;
   togglePlay: () => void;
+  setPlayingState: (state: boolean) => void;
 }

@@ -15,9 +15,18 @@ export const PlayerProvider: React.FC = ({ children }) => {
 
   const togglePlay = () => setIsPlaying(!isPlaying);
 
+  const setPlayingState = (state: boolean) => setIsPlaying(state);
+
   return (
     <PlayerContext.Provider
-      value={{ episodeList, currentEpisodeIndex, isPlaying, play, togglePlay }}
+      value={{
+        episodeList,
+        currentEpisodeIndex,
+        isPlaying,
+        play,
+        togglePlay,
+        setPlayingState,
+      }}
     >
       {children}
     </PlayerContext.Provider>
