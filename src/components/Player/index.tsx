@@ -28,6 +28,7 @@ export const Player = () => {
     toggleLoop,
     toggleShuffle,
     setPlayingState,
+    clearPlayerState,
     hasNext,
     hasPrevious,
   } = usePlayer();
@@ -50,6 +51,8 @@ export const Player = () => {
     audioRef.current.currentTime = amount;
     setProgress(amount);
   };
+
+  const handleEpisodeEnded = () => (hasNext ? playNext() : clearPlayerState());
 
   const episode = episodeList[currentEpisodeIndex];
 
@@ -107,6 +110,7 @@ export const Player = () => {
             src={episode.file.url}
             ref={audioRef}
             loop={isLooping}
+            onEnded={handleEpisodeEnded}
             autoPlay
             onPlay={() => setPlayingState(true)}
             onPause={() => setPlayingState(false)}
