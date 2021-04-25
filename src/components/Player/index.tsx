@@ -1,6 +1,6 @@
 import 'rc-slider/assets/index.css';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Image from 'next/image';
 
@@ -14,6 +14,7 @@ import styles from './styles.module.scss';
 
 export const Player = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [progress, setProgress] = useState(0);
 
   const {
     episodeList,
@@ -36,6 +37,14 @@ export const Player = () => {
 
     isPlaying ? audioRef.current.play() : audioRef.current.pause();
   }, [isPlaying]);
+
+  const setupProgressListener = () => {
+    audioRef.current.currentTime = 0;
+
+    audioRef.current.addEventListener('timeupdate', () => {
+      setProgress(Math.floor(audioRef.current.currentTime))
+    })
+  };
 
   const episode = episodeList[currentEpisodeIndex];
 
@@ -66,7 +75,7 @@ export const Player = () => {
 
       <footer className={!episode ? styles.empty : ''}>
         <div className={styles.progress}>
-          <span>00:00</span>
+          <span>{convertDurationToTimeString(progress)}</span>
 
           <div className={styles.slider}>
             {episode ? (
@@ -93,6 +102,7 @@ export const Player = () => {
             autoPlay
             onPlay={() => setPlayingState(true)}
             onPause={() => setPlayingState(false)}
+            onLoadedMetadata={setupProgressListener}
           />
         )}
 
