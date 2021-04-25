@@ -42,8 +42,13 @@ export const Player = () => {
     audioRef.current.currentTime = 0;
 
     audioRef.current.addEventListener('timeupdate', () => {
-      setProgress(Math.floor(audioRef.current.currentTime))
-    })
+      setProgress(Math.floor(audioRef.current.currentTime));
+    });
+  };
+
+  const handleSeek = (amount: number) => {
+    audioRef.current.currentTime = amount;
+    setProgress(amount);
   };
 
   const episode = episodeList[currentEpisodeIndex];
@@ -80,6 +85,9 @@ export const Player = () => {
           <div className={styles.slider}>
             {episode ? (
               <Slider
+                max={episode?.file?.duration}
+                value={progress}
+                onChange={handleSeek}
                 trackStyle={{ backgroundColor: '#04d361' }}
                 railStyle={{ backgroundColor: '#9f75ff' }}
                 handleStyle={{ borderColor: '#04d361', borderWidth: 4 }}
