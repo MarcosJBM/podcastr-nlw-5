@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { format, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
+import { usePlayer } from '../../contexts/PlayerContext';
+
 import { api } from '../../services/api';
 
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
@@ -17,6 +19,8 @@ interface Episodes {
 }
 
 export default function Episode({ episode }: Episodes) {
+  const { play } = usePlayer();
+
   return (
     <div className={styles.episode}>
       <div className={styles.thumbnailContainer}>
@@ -33,7 +37,7 @@ export default function Episode({ episode }: Episodes) {
           objectFit={'cover'}
         />
 
-        <button type='button'>
+        <button type='button' onClick={() => play(episode)}>
           <img src='/play.svg' alt='Tocar episódio' />
         </button>
       </div>

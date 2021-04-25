@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 export const PlayerContext = createContext({} as PlayerContextData);
 
@@ -58,3 +58,5 @@ export const PlayerProvider: React.FC = ({ children }) => {
     </PlayerContext.Provider>
   );
 };
+
+export const usePlayer = () => useContext(PlayerContext);
