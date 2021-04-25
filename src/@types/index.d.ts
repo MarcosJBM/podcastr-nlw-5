@@ -22,5 +22,7 @@ interface HomepageProps {
 interface PlayerContextData {
   episodeList: Episode[];
   currentEpisodeIndex: number;
+  isPlaying: boolean;
   play: (episode: Episode) => void;
+  togglePlay: () => void;
 }

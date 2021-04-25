@@ -5,14 +5,20 @@ export const PlayerContext = createContext({} as PlayerContextData);
 export const PlayerProvider: React.FC = ({ children }) => {
   const [episodeList, setEpisodeList] = useState<Episode[]>([]);
   const [currentEpisodeIndex, setCurrentEpisodeIndex] = useState<number>(0);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   const play = (episode: Episode) => {
     setEpisodeList([episode]);
     setCurrentEpisodeIndex(0);
+    setIsPlaying(true);
   };
 
+  const togglePlay = () => setIsPlaying(!isPlaying);
+
   return (
-    <PlayerContext.Provider value={{ episodeList, currentEpisodeIndex, play }}>
+    <PlayerContext.Provider
+      value={{ episodeList, currentEpisodeIndex, isPlaying, play, togglePlay }}
+    >
       {children}
     </PlayerContext.Provider>
   );
