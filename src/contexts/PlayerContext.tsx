@@ -13,6 +13,12 @@ export const PlayerProvider: React.FC = ({ children }) => {
     setIsPlaying(true);
   };
 
+  const playList = (list: Episode[], index: number) => {
+    setEpisodeList(list);
+    setCurrentEpisodeIndex(index);
+    setIsPlaying(true);
+  };
+
   const togglePlay = () => setIsPlaying(!isPlaying);
 
   const setPlayingState = (state: boolean) => setIsPlaying(state);
@@ -24,6 +30,7 @@ export const PlayerProvider: React.FC = ({ children }) => {
         currentEpisodeIndex,
         isPlaying,
         play,
+        playList,
         togglePlay,
         setPlayingState,
       }}
