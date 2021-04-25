@@ -8,6 +8,8 @@ import Slider from 'rc-slider';
 
 import { usePlayer } from '../../contexts/PlayerContext';
 
+import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
+
 import styles from './styles.module.scss';
 
 export const Player = () => {
@@ -78,7 +80,9 @@ export const Player = () => {
             )}
           </div>
 
-          <span>00:00</span>
+          <span>
+            {convertDurationToTimeString(episode?.file?.duration ?? 0)}
+          </span>
         </div>
 
         {episode && (
