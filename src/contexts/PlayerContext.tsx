@@ -19,16 +19,17 @@ export const PlayerProvider: React.FC = ({ children }) => {
     setIsPlaying(true);
   };
 
-  const playNext = () => {
-    const nextEpisodeIndex = currentEpisodeIndex + 1;
+  const hasNext = currentEpisodeIndex + 1 < episodeList.length;
+  const hasPrevious = currentEpisodeIndex > 0;
 
-    if (nextEpisodeIndex < episodeList.length) {
+  const playNext = () => {
+    if (hasNext) {
       setCurrentEpisodeIndex(currentEpisodeIndex + 1);
     }
   };
 
   const playPrevious = () => {
-    if (currentEpisodeIndex > 0) {
+    if (hasPrevious) {
       setCurrentEpisodeIndex(currentEpisodeIndex - 1);
     }
   };
@@ -49,6 +50,8 @@ export const PlayerProvider: React.FC = ({ children }) => {
         playPrevious,
         togglePlay,
         setPlayingState,
+        hasNext,
+        hasPrevious,
       }}
     >
       {children}

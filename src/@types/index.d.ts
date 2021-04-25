@@ -29,4 +29,6 @@ interface PlayerContextData {
   playPrevious: () => void;
   togglePlay: () => void;
   setPlayingState: (state: boolean) => void;
+  hasNext: boolean;
+  hasPrevious: boolean;
 }
