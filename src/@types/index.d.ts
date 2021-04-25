@@ -25,6 +25,7 @@ interface PlayerContextData {
   isPlaying: boolean;
   play: (episode: Episode) => void;
   playList: (list: Episode[], index: number) => void;
+  playNext: () => void;
   togglePlay: () => void;
   setPlayingState: (state: boolean) => void;
 }

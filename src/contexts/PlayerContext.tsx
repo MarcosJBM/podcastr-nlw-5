@@ -19,6 +19,14 @@ export const PlayerProvider: React.FC = ({ children }) => {
     setIsPlaying(true);
   };
 
+  const playNext = () => {
+    const nextEpisodeIndex = currentEpisodeIndex + 1;
+
+    if (nextEpisodeIndex < episodeList.length) {
+      setCurrentEpisodeIndex(currentEpisodeIndex + 1);
+    }
+  };
+
   const togglePlay = () => setIsPlaying(!isPlaying);
 
   const setPlayingState = (state: boolean) => setIsPlaying(state);
@@ -31,6 +39,7 @@ export const PlayerProvider: React.FC = ({ children }) => {
         isPlaying,
         play,
         playList,
+        playNext,
         togglePlay,
         setPlayingState,
       }}
