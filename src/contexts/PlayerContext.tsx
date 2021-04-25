@@ -7,6 +7,7 @@ export const PlayerProvider: React.FC = ({ children }) => {
   const [currentEpisodeIndex, setCurrentEpisodeIndex] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isLooping, setIsLooping] = useState<boolean>(false);
+  const [isShuffling, setIsShuffling] = useState<boolean>(false);
 
   const play = (episode: Episode) => {
     setEpisodeList([episode]);
@@ -39,6 +40,8 @@ export const PlayerProvider: React.FC = ({ children }) => {
 
   const toggleLoop = () => setIsLooping(!isLooping);
 
+  const toggleShuffle = () => setIsShuffling(!isShuffling);
+
   const setPlayingState = (state: boolean) => setIsPlaying(state);
 
   return (
@@ -48,12 +51,14 @@ export const PlayerProvider: React.FC = ({ children }) => {
         currentEpisodeIndex,
         isPlaying,
         isLooping,
+        isShuffling,
         play,
         playList,
         playNext,
         playPrevious,
         togglePlay,
         toggleLoop,
+        toggleShuffle,
         setPlayingState,
         hasNext,
         hasPrevious,
