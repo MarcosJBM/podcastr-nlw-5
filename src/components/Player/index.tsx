@@ -18,9 +18,12 @@ export const Player = () => {
     currentEpisodeIndex,
     isPlaying,
     isLooping,
+    isShuffling,
     playNext,
     playPrevious,
     togglePlay,
+    toggleLoop,
+    toggleShuffle,
     setPlayingState,
     hasNext,
     hasPrevious,
@@ -90,9 +93,15 @@ export const Player = () => {
         )}
 
         <div className={styles.buttons}>
-          <button type='button' disabled={!episode}>
+          <button
+            type='button'
+            onClick={toggleShuffle}
+            className={isShuffling ? styles.isActive : ''}
+            disabled={!episode || episodeList.length === 1}
+          >
             <img src='/shuffle.svg' alt='Embaralhar' />
           </button>
+
           <button
             type='button'
             onClick={playPrevious}
@@ -100,6 +109,7 @@ export const Player = () => {
           >
             <img src='/play-previous.svg' alt='Tocar anterior' />
           </button>
+
           <button
             type='button'
             disabled={!episode}
@@ -112,6 +122,7 @@ export const Player = () => {
               <img src='/play.svg' alt='Tocar' />
             )}
           </button>
+
           <button
             type='button'
             onClick={playNext}
@@ -119,7 +130,13 @@ export const Player = () => {
           >
             <img src='/play-next.svg' alt='Tocar próxima' />
           </button>
-          <button type='button' disabled={!episode}>
+
+          <button
+            type='button'
+            onClick={toggleLoop}
+            className={isLooping ? styles.isActive : ''}
+            disabled={!episode}
+          >
             <img src='/repeat.svg' alt='Repetir' />
           </button>
         </div>

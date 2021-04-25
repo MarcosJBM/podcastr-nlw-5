@@ -25,7 +25,13 @@ export const PlayerProvider: React.FC = ({ children }) => {
   const hasPrevious = currentEpisodeIndex > 0;
 
   const playNext = () => {
-    if (hasNext) {
+    if (isShuffling) {
+      const nextRandomEpisodeIndex = Math.floor(
+        Math.random() * episodeList.length
+      );
+
+      setCurrentEpisodeIndex(nextRandomEpisodeIndex);
+    } else if (hasNext) {
       setCurrentEpisodeIndex(currentEpisodeIndex + 1);
     }
   };
