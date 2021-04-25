@@ -17,6 +17,7 @@ export const Player = () => {
     episodeList,
     currentEpisodeIndex,
     isPlaying,
+    isLooping,
     playNext,
     playPrevious,
     togglePlay,
@@ -81,6 +82,7 @@ export const Player = () => {
           <audio
             src={episode.file.url}
             ref={audioRef}
+            loop={isLooping}
             autoPlay
             onPlay={() => setPlayingState(true)}
             onPause={() => setPlayingState(false)}

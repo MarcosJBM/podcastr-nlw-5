@@ -6,6 +6,7 @@ export const PlayerProvider: React.FC = ({ children }) => {
   const [episodeList, setEpisodeList] = useState<Episode[]>([]);
   const [currentEpisodeIndex, setCurrentEpisodeIndex] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [isLooping, setIsLooping] = useState<boolean>(false);
 
   const play = (episode: Episode) => {
     setEpisodeList([episode]);
@@ -36,6 +37,8 @@ export const PlayerProvider: React.FC = ({ children }) => {
 
   const togglePlay = () => setIsPlaying(!isPlaying);
 
+  const toggleLoop = () => setIsLooping(!isLooping);
+
   const setPlayingState = (state: boolean) => setIsPlaying(state);
 
   return (
@@ -44,11 +47,13 @@ export const PlayerProvider: React.FC = ({ children }) => {
         episodeList,
         currentEpisodeIndex,
         isPlaying,
+        isLooping,
         play,
         playList,
         playNext,
         playPrevious,
         togglePlay,
+        toggleLoop,
         setPlayingState,
         hasNext,
         hasPrevious,

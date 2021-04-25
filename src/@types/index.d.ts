@@ -23,11 +23,13 @@ interface PlayerContextData {
   episodeList: Episode[];
   currentEpisodeIndex: number;
   isPlaying: boolean;
+  isLooping: boolean;
   play: (episode: Episode) => void;
   playList: (list: Episode[], index: number) => void;
   playNext: () => void;
   playPrevious: () => void;
   togglePlay: () => void;
+  toggleLoop: () => void;
   setPlayingState: (state: boolean) => void;
   hasNext: boolean;
   hasPrevious: boolean;
